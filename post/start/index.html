@@ -1,0 +1,189 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Start! | Just for Fan! </title>
+<link rel="shortcut icon" href="https://stranyan.github.io/favicon.ico?v=1655788285477">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stranyan.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Start! | Just for Fan!  - Atom Feed" href="https://stranyan.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="QQ
+微信
+腾讯企点
+..." />
+    <meta name="keywords" content="下载,微信,QQ,腾讯企点,开始,安装包,效率" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://stranyan.github.io">
+  <img class="avatar" src="https://stranyan.github.io/images/avatar.png?v=1655788285477" alt="">
+  </a>
+  <h1 class="site-title">
+    Just for Fan! 
+  </h1>
+  <p class="site-description">
+    Just for Fan! 
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Start!
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-06-14
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+                <a href="https://stranyan.github.io/tag/6ukrEwdaS/" class="post-tag">
+                  # 下载
+                </a>
+              
+                <a href="https://stranyan.github.io/tag/ekkqKk5Sdh/" class="post-tag">
+                  # 微信
+                </a>
+              
+                <a href="https://stranyan.github.io/tag/S3A_nSY0L6/" class="post-tag">
+                  # QQ
+                </a>
+              
+                <a href="https://stranyan.github.io/tag/mwLMSIFO2a/" class="post-tag">
+                  # 腾讯企点
+                </a>
+              
+                <a href="https://stranyan.github.io/tag/B5AJtF6wyf/" class="post-tag">
+                  # 开始
+                </a>
+              
+                <a href="https://stranyan.github.io/tag/I8Q_kNAL_1/" class="post-tag">
+                  # 安装包
+                </a>
+              
+                <a href="https://stranyan.github.io/tag/XH1TH4PJHa/" class="post-tag">
+                  # 效率
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <p><a href="https://dldir1.qq.com/qqfile/qq/PCQQ9.6.1/QQ9.6.1.28732.exe">QQ</a><br>
+<a href="https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe">微信</a><br>
+<a href="https://dldir1.qq.com/qqfile/crm/qidian/QiDian5.2.0.19006.exe">腾讯企点</a></p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  <a href="https://github.com/Stranyan" target="_blank">Stranyan</a>
+  <a class="rss" href="https://stranyan.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
