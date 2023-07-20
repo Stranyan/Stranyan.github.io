@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>信息流</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+  <style>
+    .todo-list {
+      margin-top: 20px;
+      list-style-type: none;
+      padding: 0;
+    }
+  
+    .todo-list li {
+      margin-bottom: 10px;
+    }
+  
+    .todo-list input[type="checkbox"] {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航页面 -->
+  <div id="navbar">
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="information.html">信息流</a></li>
+      <li><a href="blog.html">博客</a></li>
+      <li><a href="other.html">实用工具</a></li>
+    </ul>
+  </div>
+
+  <!-- 页面内容 -->
+  <div class="container">
+    <h1>ToDo List</h1>
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="添加新任务">
+      <button type="submit">添加</button>
+    </form>
+    <ul id="todo-list" class="todo-list"></ul>
+  </div>
+
+  <script>
+    // 选择表单元素和列表元素
+    const todoForm = document.getElementById('todo-form');
+    const todoInput = document.getElementById('todo-input');
+    const todoList = document.getElementById('todo-list');
+
+    // 从 localStorage 中获取保存的任务项数据
+    const storedTodoItems = localStorage.getItem('todoItems');
+    const todoItems = storedTodoItems ? JSON.parse(storedTodoItems) : [];
+
+    // 在页面加载时渲染任务项
+    renderTodoItems();
+
+    // 监听表单提交事件
+    todoForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // 阻止表单提交的默认行为
+
+      const todoText = todoInput.value.trim(); // 获取输入的任务文本
+
+      if (todoText !== '') {
+        // 创建新的任务项对象
+        const todoItem = {
+          text: todoText,
+          completed: false
+        };
+
+        // 将任务项对象添加到数组中
+        todoItems.push(todoItem);
+
+        // 渲染任务项列表
+        renderTodoItems();
+
+        // 清空输入框的值
+        todoInput.value = '';
+
+        // 将任务项数据保存到 localStorage 中
+        localStorage.setItem('todoItems', JSON.stringify(todoItems));
+      }
+    });
+
+    // 渲染任务项列表
+    function renderTodoItems() {
+      // 清空列表元素的内容
+      todoList.innerHTML = '';
+
+      // 遍历任务项数组，创建并添加每个任务项到列表中
+      todoItems.forEach(function(todoItem) {
+        const todoItemElement = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = todoItem.completed;
+        const todoLabel = document.createElement('label');
+        todoLabel.textContent = todoItem.text;
+
+        // 监听复选框的变化事件
+        checkbox.addEventListener('change', function() {
+          todoItem.completed = checkbox.checked;
+          // 将更新后的任务项数据保存到 localStorage 中
+          localStorage.setItem('todoItems', JSON.stringify(todoItems));
+        });
+
+        // 将复选框和文本标签添加到任务项元素中
+        todoItemElement.appendChild(checkbox);
+        todoItemElement.appendChild(todoLabel);
+
+        // 将任务项元素添加到列表中
+        todoList.appendChild(todoItemElement);
+      });
+    }
+  </script>
+</body>
+</html>
