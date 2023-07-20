@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>实用工具</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+  <style>
+    #local-time {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
+    #network-time {
+      font-size: 18px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航页面 -->
+  <div id="navbar">
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="information.html">信息流</a></li>
+      <li><a href="blog.html">博客</a></li>
+      <li><a href="other.html">实用工具</a></li>
+    </ul>
+  </div>
+
+  <!-- 页面内容 -->
+  <div class="container">
+    <h1>时间</h1>
+    <div id="local-time"></div>
+    <div id="network-time"></div>
+    <div id="ping">
+        <h1>Ping功能示例</h1>
+        <input type="text" id="ipInput" placeholder="请输入要 Ping 的 IP 地址">
+        <button onclick="ping()">Ping</button>
+        <p id="result"></p>
+    </div>
+</div>
+  <script>
+    var networkTime = null; // 保存网络时间
+
+    // 显示本地系统时间
+    function showLocalTime() {
+      var now = new Date();
+      var localTimeElement = document.getElementById('local-time');
+      localTimeElement.textContent = '本地时间：' + now.toLocaleTimeString();
+    }
+
+    // 显示网络时间
+    function showNetworkTime() {
+      var networkTimeElement = document.getElementById('network-time');
+
+      if (networkTime) {
+        // 使用上一次获取的网络时间进行累加
+        networkTime.setSeconds(networkTime.getSeconds() + 1);
+        networkTimeElement.textContent = '网络时间：' + networkTime.toLocaleTimeString();
+      } else {
+        // 第一次获取网络时间
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              networkTime = new Date(response.datetime);
+              networkTimeElement.textContent = '网络时间：' + networkTime.toLocaleTimeString();
+            } else {
+              networkTimeElement.textContent = '网络时间：连接失败';
+            }
+          }
+        };
+        xhr.open('GET', 'https://worldtimeapi.org/api/ip', true);
+        xhr.send();
+      }
+    }
+
+    // 更新时间显示
+    function updateTimes() {
+      showLocalTime();
+      showNetworkTime();
+    }
+
+    // 每秒更新一次时间显示
+    setInterval(updateTimes, 1000);
+
+    // 页面加载时更新一次时间显示
+    updateTimes();
+  </script>
+</body>
+</html>
