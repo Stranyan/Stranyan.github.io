@@ -26,6 +26,7 @@ function searchAll() {
   }
 }
 
+/*
 function ping() {
   var ip = document.getElementById('ipInput').value;
   var startTime = new Date().getTime();
@@ -45,4 +46,31 @@ function ping() {
 
   xhr.open('GET', 'http://' + ip, true);
   xhr.send();
+}
+*/
+
+function ping() {
+  var ip = document.getElementById('ipInput').value;
+  var img = new Image();
+  var start = new Date().getTime();
+  var hasFinish = false;
+  img.onload = function() {
+    if ( !hasFinish ) {
+      hasFinish = true;
+      var endTime = new Date().getTime();
+      var responseTime = endTime - startTime;
+      document.getElementById('result').textContent = ('Ping ' + ip + ' 成功！ ' + responseTime + ' 毫秒');
+    }
+  };
+  img.onerror = function() {
+      hasFinish = false;
+      document.getElementById('result').textContent = ('Ping ' + ip + ' 失败······ ');
+  };
+  img.src = address + '/?' + start;
+  setTimeout(()=>{
+    if(hasFinish){
+      hasFinish = false
+      document.getElementById('result').textContent = ('网络错误, 尝试刷新页面重试。');
+    }
+  },1500)
 }
