@@ -66,7 +66,7 @@ function ping() {
       hasFinish = false;
       document.getElementById('result').textContent = ('Ping ' + ip + ' 失败······ ');
   };
-  img.src = address + '/?' + start;
+  img.src = ip + '/?' + start;
   setTimeout(()=>{
     if(hasFinish){
       hasFinish = false
